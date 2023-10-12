@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPositions: []
+  WildlifePositions: []
 --- !u!1 &395201154
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPositions: []
+  WildlifePositions: []
 --- !u!1 &537457295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPositions: []
+  WildlifePositions: []
 --- !u!1 &1126244577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,6 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPositions: []
+  WildlifePositions: []
 --- !u!1 &1347205332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1622,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPositions: []
+  WildlifePositions: []
+--- !u!1 &1882037793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882037795}
+  - component: {fileID: 1882037796}
+  m_Layer: 0
+  m_Name: MonsterTypeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1882037795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882037793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882037796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882037793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02467d15c2d87c44826c0074eecd3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterTypes:
+  - {fileID: 11400000, guid: 9e27fb4e36d9fa6468d678a4b45ec3ba, type: 2}
 --- !u!1 &2012246608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,3 +1746,4 @@ SceneRoots:
   - {fileID: 2012246609}
   - {fileID: 581355135}
   - {fileID: 1009739093}
+  - {fileID: 1882037795}

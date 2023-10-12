@@ -13,6 +13,9 @@ public class Channel : MonoBehaviour
         if(m == null) Debug.Log("Null value for this monster position");
 
         // Set the monster's sprite here
+        // Eg.
+        // Sprite monsterSprite = MonsterTypeManager.currentMonster.Sprites[0];
+        // m.GetComponent<SpriteRenderer>().sprite = monsterSprite;
 
         return m;
     }

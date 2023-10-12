@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 181184088}
   - component: {fileID: 181184089}
+  - component: {fileID: 181184090}
   m_Layer: 0
   m_Name: Channel4
   m_TagString: Untagged
@@ -207,6 +208,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &181184090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181184087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce2a68cb44672441bb7b13fa7bef6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterPositions: []
 --- !u!1 &395201154
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 526951378}
   - component: {fileID: 526951379}
+  - component: {fileID: 526951380}
   m_Layer: 0
   m_Name: Channel2
   m_TagString: Untagged
@@ -561,6 +576,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &526951380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526951377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce2a68cb44672441bb7b13fa7bef6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterPositions: []
 --- !u!1 &537457295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1018801441}
   - component: {fileID: 1018801442}
+  - component: {fileID: 1018801443}
   m_Layer: 0
   m_Name: Channel5
   m_TagString: Untagged
@@ -1112,6 +1141,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1018801443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018801440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce2a68cb44672441bb7b13fa7bef6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterPositions: []
 --- !u!1 &1126244577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251295742}
   - component: {fileID: 1251295743}
+  - component: {fileID: 1251295744}
   m_Layer: 0
   m_Name: Channel3
   m_TagString: Untagged
@@ -1299,6 +1342,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1251295744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251295741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce2a68cb44672441bb7b13fa7bef6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterPositions: []
 --- !u!1 &1347205332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1850330546}
   - component: {fileID: 1850330547}
+  - component: {fileID: 1850330548}
   m_Layer: 0
   m_Name: Channel1
   m_TagString: Untagged
@@ -1548,6 +1605,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1850330548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850330545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce2a68cb44672441bb7b13fa7bef6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterPositions: []
 --- !u!1 &2012246608
 GameObject:
   m_ObjectHideFlags: 0

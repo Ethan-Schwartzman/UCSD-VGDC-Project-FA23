@@ -40,6 +40,9 @@ public class ChannelManager : MonoBehaviour
         // (Active channels are set to children of the ActiveChannels GameObject)
         for(int i = 0; i < NumberOfChannels; i++) {
             channels[i].SetParent(ActiveChannels.transform);
+
+            // Ensure the channel has the channel component
+            if(channels[i].GetComponent<Channel>() == null) Debug.Log("An active channel is missing the channel component");
         }
 
         // Set the current channel

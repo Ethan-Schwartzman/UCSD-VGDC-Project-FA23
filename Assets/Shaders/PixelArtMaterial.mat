@@ -41,12 +41,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blockiness: 64
-    - _Fuzziness: 1.03
+    - _Blockiness: 32
+    - _Fuzziness: 1.15
     - _Grayscale: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Range: 0.6
+    - _Range: 0.5
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &3673637998875313892

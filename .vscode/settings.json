@@ -53,4 +53,5 @@
     },
     "dotnet.preferCSharpExtension": true,
     "dotnet.defaultSolution": "VGDC-Project.sln"
+
 }

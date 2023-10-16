@@ -9,7 +9,6 @@ public class ChannelManager : MonoBehaviour
     public int NumberOfChannels;
     public GameObject ActiveChannels;
     public GameObject InactiveChannels;
-
     private int currentChannel;
     private Transform[] channels;
 

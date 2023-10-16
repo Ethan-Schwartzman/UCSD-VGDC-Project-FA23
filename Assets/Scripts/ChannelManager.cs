@@ -50,6 +50,20 @@ public class ChannelManager : MonoBehaviour
         currentChannel = 0;
     }
 
+    public void Update(){
+        //if player press down the up key
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+           ChannelUp();
+
+        }
+        //if player press down the down key
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ChannelDown();
+        }
+    }
+
     public void ChannelUp() {
         // Hides the old channel
         channels[currentChannel].gameObject.SetActive(false);

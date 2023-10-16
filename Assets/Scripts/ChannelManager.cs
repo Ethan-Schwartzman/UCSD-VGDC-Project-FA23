@@ -9,7 +9,6 @@ public class ChannelManager : MonoBehaviour
     public int NumberOfChannels;
     public GameObject ActiveChannels;
     public GameObject InactiveChannels;
-
     private int currentChannel;
     private Transform[] channels;
 
@@ -48,6 +47,20 @@ public class ChannelManager : MonoBehaviour
         // Set the current channel
         channels[0].gameObject.SetActive(true);
         currentChannel = 0;
+    }
+
+    public void Update(){
+        //if player press down the up key
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+           ChannelUp();
+
+        }
+        //if player press down the down key
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ChannelDown();
+        }
     }
 
     public void ChannelUp() {

@@ -27,7 +27,7 @@ public class pressed_down : MonoBehaviour
 
             // Vector3 pos=transform.position;
             // pos.y=0;
-            transform.localScale=new Vector3(0.6f,0.750f,1);
+            transform.localScale=new Vector3(0.5f,0.50f,1);
             // transform.position=pos;
         }
         //after releasing the button, the image reverts back to before it was pressed

@@ -15,6 +15,13 @@ public class ChannelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set channels active/inactive
+        foreach(Transform child in InactiveChannels.transform) {
+            child.gameObject.SetActive(false);
+        }
+        InactiveChannels.SetActive(false);
+        ActiveChannels.SetActive(true);
+
         // Store all the channel transforms in an array
         Transform allChannels = InactiveChannels.transform;
         channels = new Transform[allChannels.childCount];

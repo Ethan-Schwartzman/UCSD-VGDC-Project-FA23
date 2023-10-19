@@ -6,12 +6,16 @@ public class PageTurner : MonoBehaviour
 {
     public GameObject[] Pages;
     
-    private float xOffset = 2.5f;
+    private float xOffset = 1.85f;
     private float pageTurnTime = 0.015f; // smaller = slower
     private int currentPage;
+    private bool bookInFocus;
+    private int axisReset;
 
     void Start() {
         currentPage = 0;
+        bookInFocus = false;
+        axisReset = 0;
         int numPages = Pages.Length;
         
         // Since the page turns in sets of 2, an empty gameobject
@@ -119,5 +123,24 @@ public class PageTurner : MonoBehaviour
             yield return null;
         }
         p1.transform.localScale = new Vector3(0, 1, 1);
+    }
+
+    void Update() {
+        // axesReset is used to prevent spam turning the pages
+        // by holding down a direction
+        float horizontalValue = Input.GetAxisRaw("Horizontal"); 
+        if(axisReset != 1 && horizontalValue > 0.02) {
+            axisReset = 1;
+            bookInFocus = true;
+            NextPage();
+        }
+        else if(axisReset != -1 && horizontalValue < -0.02){
+            axisReset = -1;
+            bookInFocus = true;
+            PreviousPage();
+        }
+        else if(horizontalValue <= 0.02 && horizontalValue >= -0.02){
+            axisReset = 0;
+        }
     }
 }

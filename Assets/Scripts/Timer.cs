@@ -43,4 +43,8 @@ public class Timer : MonoBehaviour
         //the second parameter is basically what values you want to show
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void SetTimer(float time) {
+        timeValue = time;
+    }
 }

@@ -13,6 +13,7 @@ public class ChannelManager : MonoBehaviour
     private Transform[] channels;
     private int axisReset;
     public BookMovement bookMovement;
+    public MonsterAI monsterAI;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +94,9 @@ public class ChannelManager : MonoBehaviour
 
         // Shows the new channel
         channels[currentChannel].gameObject.SetActive(true);
+
+        // Tell MonsterAI that channel has changed
+        monsterAI.ChannelChange();
     }
 
     public void ChannelDown() {
@@ -106,5 +110,18 @@ public class ChannelManager : MonoBehaviour
 
         // Shows the new channel
         channels[currentChannel].gameObject.SetActive(true);
+
+        // Tell MonsterAI that channel has changed
+        monsterAI.ChannelChange();
+    }
+
+    public int getCurrentChannel()
+    {
+        return currentChannel;
+    }
+
+    public Transform getCurrentChannelObject()
+    {
+        return channels[currentChannel];
     }
 }

@@ -12,7 +12,7 @@ public class test : MonoBehaviour
     //Set this in the Inspector
     public Sprite m_Sprite;
     public Sprite temp_Sprite;
-
+    
     void Start()
     {
         //Fetch the Image from the GameObject
@@ -31,6 +31,5 @@ public class test : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.UpArrow)){
             m_Image.sprite = temp_Sprite;
         }
-        
     }
 }

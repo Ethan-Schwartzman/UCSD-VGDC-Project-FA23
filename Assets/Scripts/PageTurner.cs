@@ -11,10 +11,11 @@ public class PageTurner : MonoBehaviour
     private int currentPage;
     private bool bookInFocus;
     private int axisReset;
+    private BookMovement bookMovement;
 
     void Start() {
         currentPage = 0;
-        bookInFocus = false;
+        bookMovement = transform.parent.GetComponent<BookMovement>();
         axisReset = 0;
         int numPages = Pages.Length;
         
@@ -126,17 +127,19 @@ public class PageTurner : MonoBehaviour
     }
 
     void Update() {
-        // axesReset is used to prevent spam turning the pages
+        // axisReset is used to prevent spam turning the pages
         // by holding down a direction
         float horizontalValue = Input.GetAxisRaw("Horizontal"); 
         if(axisReset != 1 && horizontalValue > 0.02) {
             axisReset = 1;
-            bookInFocus = true;
+            bookMovement.StopAllCoroutines();
+            bookMovement.StartCoroutine(bookMovement.MoveUp());
             NextPage();
         }
         else if(axisReset != -1 && horizontalValue < -0.02){
             axisReset = -1;
-            bookInFocus = true;
+            bookMovement.StopAllCoroutines();
+            bookMovement.StartCoroutine(bookMovement.MoveUp());
             PreviousPage();
         }
         else if(horizontalValue <= 0.02 && horizontalValue >= -0.02){

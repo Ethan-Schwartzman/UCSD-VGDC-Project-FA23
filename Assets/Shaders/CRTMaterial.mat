@@ -57,9 +57,11 @@ Material:
     - _BlinkFrequency: 2.81
     - _BlinkIntensity: 0.07
     - _Blockiness: 16
+    - _Curvature: 3
     - _Fuzziness: 1.2
     - _Grayscale: 0
     - _NoiseAmount: 1
+    - _PixelResolution: 64
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Range: 0.5

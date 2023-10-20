@@ -11,6 +11,8 @@ public class ChannelManager : MonoBehaviour
     public GameObject InactiveChannels;
     private int currentChannel;
     private Transform[] channels;
+    private int axisReset;
+    public BookMovement bookMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -57,16 +59,26 @@ public class ChannelManager : MonoBehaviour
     }
 
     public void Update(){
-        //if player press down the up key
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-           ChannelUp();
+        // axisReset is used to prevent spam changing the channels
+        // by holding down a direction
 
+        //if player press down the up key
+        float verticalValue = Input.GetAxisRaw("Vertical"); 
+        if(axisReset != 1 && verticalValue > 0.02) {
+            axisReset = 1;
+            ChannelUp();
+            bookMovement.StopAllCoroutines();
+            bookMovement.StartCoroutine(bookMovement.MoveDown());
         }
-        //if player press down the down key
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
+        // if player press down the down key
+        else if(axisReset != -1 && verticalValue < -0.02){
+            axisReset = -1;
             ChannelDown();
+            bookMovement.StopAllCoroutines();
+            bookMovement.StartCoroutine(bookMovement.MoveDown());
+        }
+        else if(verticalValue <= 0.02 && verticalValue >= -0.02){
+            axisReset = 0;
         }
     }
 

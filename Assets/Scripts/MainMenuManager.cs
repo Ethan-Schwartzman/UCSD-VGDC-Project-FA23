@@ -8,6 +8,9 @@ public class MainMenuManager : MonoBehaviour
     public bool EnableMainMenu;
     public GameObject Game;
     public Timer GameTimer;
+    [Range(0.001f, 0.01f)]
+    public float FadeSpeed;
+    public SpriteRenderer TransitionScreen;
 
     public struct Difficulty{
         public float time;
@@ -19,10 +22,18 @@ public class MainMenuManager : MonoBehaviour
     {
         SetDifficulty(300f);
         if(EnableMainMenu) {
-            ShowMainMenu();
+            foreach(Transform child in transform) {
+                child.gameObject.SetActive(true);
+            }
+            Game.gameObject.SetActive(false);
+            this.gameObject.SetActive(true);
         }   
         else {
-            HideMainMenu();
+            foreach(Transform child in transform) {
+                child.gameObject.SetActive(false);
+            }
+            Game.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -32,16 +43,48 @@ public class MainMenuManager : MonoBehaviour
     }
 
     private void ShowMainMenu() {
-        this.gameObject.SetActive(true);
-        Game.gameObject.SetActive(false);
+        StartCoroutine(FadeToBlack(true)); // true means fade in
     }
 
     private void HideMainMenu() {
-        this.gameObject.SetActive(false);
-        Game.gameObject.SetActive(true);
+        StartCoroutine(FadeToBlack(false)); // false means fade out
     }
 
     public void SetDifficulty(float time) {
         CurrentDifficulty.time = time;
+    }
+
+    void Update() {
+        if(Input.GetKeyDown("escape")) {
+            Application.Quit();
+        }
+        if(Input.anyKeyDown) {
+            HideMainMenu();
+        }
+    }
+
+    private IEnumerator FadeToBlack(bool fadeDirection) {
+        float opactiy = 0f;
+        while(opactiy < 1f) {
+            opactiy += FadeSpeed;
+            if(opactiy > 1f) opactiy = 1f; 
+            TransitionScreen.color = new Color(0, 0, 0, opactiy);
+            yield return null;
+        }
+
+        foreach(Transform child in transform) {
+            child.gameObject.SetActive(fadeDirection);
+        }
+
+        Game.gameObject.SetActive(!fadeDirection);
+
+        while(opactiy > 0f) {
+            opactiy -= FadeSpeed;
+            if(opactiy < 0f) opactiy = 0f; 
+            TransitionScreen.color = new Color(0, 0, 0, opactiy);
+            yield return null;
+        }
+
+        this.gameObject.SetActive(fadeDirection);
     }
 }

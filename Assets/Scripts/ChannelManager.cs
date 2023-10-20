@@ -14,6 +14,8 @@ public class ChannelManager : MonoBehaviour
     private int axisReset;
     public BookMovement bookMovement;
     public MonsterAI monsterAI;
+    public SpriteRenderer UpArrow;
+    public SpriteRenderer DownArrow;
 
     // Start is called before the first frame update
     void Start()
@@ -68,18 +70,16 @@ public class ChannelManager : MonoBehaviour
         if(axisReset != 1 && verticalValue > 0.02) {
             axisReset = 1;
             ChannelUp();
-            bookMovement.StopAllCoroutines();
-            bookMovement.StartCoroutine(bookMovement.MoveDown());
         }
         // if player press down the down key
         else if(axisReset != -1 && verticalValue < -0.02){
             axisReset = -1;
             ChannelDown();
-            bookMovement.StopAllCoroutines();
-            bookMovement.StartCoroutine(bookMovement.MoveDown());
         }
         else if(verticalValue <= 0.02 && verticalValue >= -0.02){
             axisReset = 0;
+            UpArrow.color = new Color(0.9f, 0.9f, 0.9f, 0.9f);
+            DownArrow.color = new Color(0.9f, 0.9f, 0.9f, 0.9f);
         }
     }
 
@@ -97,6 +97,13 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
+
+        // Move the book
+        bookMovement.StopAllCoroutines();
+        bookMovement.StartCoroutine(bookMovement.MoveDown());
+
+        // Set the arrow sprite color
+        UpArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
     }
 
     public void ChannelDown() {
@@ -113,6 +120,13 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
+
+        // Move the book
+        bookMovement.StopAllCoroutines();
+        bookMovement.StartCoroutine(bookMovement.MoveDown());
+
+        // Set the arrow sprite color
+        DownArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
     }
 
     public int getCurrentChannel()

@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     //timer is set to 5 minutes in seconds
     public float timeValue= 300;
     //disply text
-    public TextMeshProUGUI timeText;
+    public TextMeshPro timeText;
     // Update is called once per frame
     void Update()
     {

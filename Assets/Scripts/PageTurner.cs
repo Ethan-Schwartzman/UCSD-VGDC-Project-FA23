@@ -5,6 +5,7 @@ using UnityEngine;
 public class PageTurner : MonoBehaviour
 {
     public GameObject[] Pages;
+    public GameObject MonsterSelectionPage;
     
     private float xOffset = 1.85f;
     private float pageTurnTime = 0.015f; // smaller = slower
@@ -17,51 +18,71 @@ public class PageTurner : MonoBehaviour
         currentPage = 0;
         bookMovement = transform.parent.GetComponent<BookMovement>();
         axisReset = 0;
-        int numPages = Pages.Length;
+        int numPages = Pages.Length+1;
         
         // Since the page turns in sets of 2, an empty gameobject
         // is added as the last page when the number of pages is even
         if(Pages.Length % 2 == 0) {
+            // Copy page gameobjects to an array that's two bigger
+            GameObject[] temp = new GameObject[Pages.Length+2];
+            for(int i = 0; i < Pages.Length; i++) {
+                temp[i] = Pages[i];
+            }
+
+            // Add the monster selection page
+            temp[Pages.Length] = MonsterSelectionPage;
+
+            // Create the dummy page and add it to the array
+            GameObject dummyPage = new GameObject("Dummy Page");
+            dummyPage.transform.SetParent(this.transform);
+            temp[Pages.Length+1] = dummyPage;
+            Pages = temp;
+        }
+        else {
             // Copy page gameobjects to an array that's one bigger
             GameObject[] temp = new GameObject[Pages.Length+1];
             for(int i = 0; i < Pages.Length; i++) {
                 temp[i] = Pages[i];
             }
 
-            // Create the dummy page and add it to the array
-            GameObject dummyPage = new GameObject("Dummy Page");
-            dummyPage.transform.SetParent(this.transform);
-            temp[Pages.Length] = dummyPage;
+            // Add the monster selection page
+            temp[Pages.Length] = MonsterSelectionPage;
             Pages = temp;
         }
 
         // Set odd numbered pages on the left
         // and even numbered pages on the right
         for(int i = 0; i < numPages; i++) {
+            bool selectionPage = i == numPages-1;
+
+            // Set page active
+            Pages[i].SetActive(true);
+
             // Get the SpriteRenderer and Transform of the gameobject 
             // that holds the content of the page
             SpriteRenderer sr = Pages[i].GetComponentInChildren<SpriteRenderer>();
             Transform p = sr.transform;
+            p.localPosition = new Vector3(xOffset, 0, 0);
 
             // If the page is even...
             if(i % 2 == 0) {
                 // Correctly scale and position the right pages
-                p.localPosition = new Vector3(xOffset, 0, 0);
                 p.parent.transform.localScale = new Vector3(1, 1, 1);
                 // Earlier pages should be a higher layer
-                sr.sortingOrder = 10 + Pages.Length-i;
+                if(!selectionPage) sr.sortingOrder = 10 + Pages.Length-i;
             }
             // If the page is odd...
             else {
                 // rotate so it's not like reading in a mirror
-                p.localPosition = new Vector3(xOffset, 0, 0);
+                
                 p.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 p.parent.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
 
                 // Hide all the left pages (scale to 0)
                 p.parent.transform.localScale = new Vector3(0, 1, 1);
+                
                 // Earlier pages should be a lower layer
-                sr.sortingOrder = 10 + i;
+                if(!selectionPage) sr.sortingOrder = 10 + i;
             }
         }
     }

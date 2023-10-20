@@ -11,8 +11,8 @@ public class BookMovement : MonoBehaviour
     private float speed = 0.1f;
 
     void Start() {
-        transform.position = endMarker.position;
-        bookPos = false;
+        transform.position = startMarker.position;
+        bookPos = true;
     }
 
     public IEnumerator MoveUp() {

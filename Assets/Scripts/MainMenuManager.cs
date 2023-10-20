@@ -42,11 +42,11 @@ public class MainMenuManager : MonoBehaviour
         GameTimer.SetTimer(CurrentDifficulty.time);
     }
 
-    private void ShowMainMenu() {
+    public void ShowMainMenu() {
         StartCoroutine(FadeToBlack(true)); // true means fade in
     }
 
-    private void HideMainMenu() {
+    public void HideMainMenu() {
         StartCoroutine(FadeToBlack(false)); // false means fade out
     }
 
@@ -86,5 +86,13 @@ public class MainMenuManager : MonoBehaviour
         }
 
         this.gameObject.SetActive(fadeDirection);
+    }
+
+    public void ShowMainMenuNoFade() {
+        foreach(Transform child in transform) {
+            child.gameObject.SetActive(true);
+        }
+        Game.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
     }
 }

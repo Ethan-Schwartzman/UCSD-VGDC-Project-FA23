@@ -34,6 +34,8 @@ public class MonsterAI : MonoBehaviour {
             // If countdown runs out, appear
             if (timer > timeUntilAppear) {
                 currentPosition.SetActive(true);
+                Sprite[] monsterSprites = MonsterTypeManager.currentMonster.Sprites;
+                currentPosition.GetComponent<SpriteRenderer>().sprite = monsterSprites[Random.Range(0, monsterSprites.Length)];
                 // Choose next channel to appear on
                 channelResidence = Random.Range(0, NumberOfChannels);
                 // Ensures monster doesn't want to return to same channel

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PageTurner : MonoBehaviour
 {
     public GameObject[] Pages;
     public GameObject MonsterSelectionPage;
+    public MonsterSelection MonsterSelectionScript;
     
     private float xOffset = 1.85f;
     private float pageTurnTime = 0.015f; // smaller = slower
@@ -13,12 +15,17 @@ public class PageTurner : MonoBehaviour
     private bool bookInFocus;
     private int axisReset;
     private BookMovement bookMovement;
+    private bool pageDoneTurning;
+    private bool selectingMonster;
 
     void Start() {
         currentPage = 0;
         bookMovement = transform.parent.GetComponent<BookMovement>();
         axisReset = 0;
+        pageDoneTurning = true;
         int numPages = Pages.Length+1;
+        MonsterSelectionScript = MonsterSelectionPage.GetComponent<MonsterSelection>(); 
+        selectingMonster = false;
         
         // Since the page turns in sets of 2, an empty gameobject
         // is added as the last page when the number of pages is even
@@ -89,17 +96,24 @@ public class PageTurner : MonoBehaviour
 
     public void NextPage() {
         // + 2 because there's a page on the left and right
-        if(currentPage + 2 < Pages.Length) {
+        if(/*pageDoneTurning && */currentPage + 2 < Pages.Length) {
             StartCoroutine(TurnPageR2L());
             currentPage += 2;
+        }
+        else {
+            MonsterSelectionScript.SelectNext();
+            selectingMonster = true;
         }
     }
 
     public void PreviousPage() {
         // - 2 because there's a page on the left and right
-        if(currentPage - 2 >= 0) {
+        if(/*pageDoneTurning && */ !selectingMonster && currentPage - 2 >= 0) {
             StartCoroutine(TurnPageL2R());
             currentPage -= 2;
+        }
+        else if(selectingMonster) {
+            MonsterSelectionScript.SelectPrevious();
         }
     }
 
@@ -107,6 +121,7 @@ public class PageTurner : MonoBehaviour
         float s = 1f;
         GameObject p1 = Pages[currentPage];
         GameObject p2 = Pages[currentPage+1];
+        pageDoneTurning = false;
         
         // Turn the right page halfway
         while (s > 0) {
@@ -123,12 +138,14 @@ public class PageTurner : MonoBehaviour
             yield return null;
         }
         p2.transform.localScale = new Vector3(1, 1, 1);
+        pageDoneTurning = true;
     }
 
     private IEnumerator TurnPageL2R() {
         float s = 1f;
         GameObject p1 = Pages[currentPage-1];
         GameObject p2 = Pages[currentPage-2];
+        pageDoneTurning = false;
         
         // Turn the Left page halfway
         while (s > 0) {
@@ -145,6 +162,11 @@ public class PageTurner : MonoBehaviour
             yield return null;
         }
         p1.transform.localScale = new Vector3(0, 1, 1);
+        pageDoneTurning = true;
+    }
+
+    public void SetNotSelectingMonster() {
+        selectingMonster = false;
     }
 
     void Update() {

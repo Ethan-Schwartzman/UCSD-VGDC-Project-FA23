@@ -65,7 +65,7 @@ public class ChannelManager : MonoBehaviour
 
         // Enable AI
         monsterAI.GameBegin();
-        wildlifeAI.GameBegin();
+        //wildlifeAI.GameBegin();
     }
 
     public void Update(){
@@ -104,7 +104,7 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
-        wildlifeAI.ChannelChange();
+        //wildlifeAI.ChannelChange();
 
         // Move the book
         bookMovement.StopAllCoroutines();
@@ -128,7 +128,7 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
-        wildlifeAI.ChannelChange();
+        //wildlifeAI.ChannelChange();
 
         // Move the book
         bookMovement.StopAllCoroutines();
@@ -138,12 +138,12 @@ public class ChannelManager : MonoBehaviour
         DownArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
     }
 
-    public int getCurrentChannel()
+    public int GetCurrentChannel()
     {
         return currentChannel;
     }
 
-    public Transform getCurrentChannelObject()
+    public Transform GetCurrentChannelObject()
     {
         return channels[currentChannel];
     }

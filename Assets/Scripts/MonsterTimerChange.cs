@@ -10,6 +10,7 @@ public class MonsterTimerChange : MonoBehaviour {
     public int minTimeUntilTakeover;
     public float monsterTakeOverTimeStart;
     public float monsterTakeOverTimeStop;
+    public MonsterTypeManager monsterTypeManager;
 
 
     private float timeUntilNextTakeOver;
@@ -21,30 +22,30 @@ public class MonsterTimerChange : MonoBehaviour {
     void Start() {
         timeUntilNextTakeOver = Random.Range(minTimeUntilTakeover, maxTimeUntilTakeover);
         timeValue = monsterTakeOverTimeStart;
-
         Debug.Log("timeuntil" + timeUntilNextTakeOver);
     }
 
     private void Update() {
-        if (takeOverCount < takeOverLimit) {
-            timeUntilNextTakeOver -= Time.deltaTime;
-            if (!monsterTakeOver && timeUntilNextTakeOver < 0) {
-                timer.monsterTakeover = true;
-                monsterTakeOver = true;
-                takeOverCount++;
-                timeValue = monsterTakeOverTimeStart;
-            }
-            if (timeValue < monsterTakeOverTimeStop) {
+        if (monsterTypeManager.getCurrentMonster().ChangesTimer) {
+            if (takeOverCount < takeOverLimit) {
+                timeUntilNextTakeOver -= Time.deltaTime;
+                if (!monsterTakeOver && timeUntilNextTakeOver < 0) {
+                    timer.monsterTakeover = true;
+                    monsterTakeOver = true;
+                    takeOverCount++;
+                    timeValue = monsterTakeOverTimeStart;
+                }
+                if (timeValue < monsterTakeOverTimeStop) {
+                    timer.monsterTakeover = false;
+                    monsterTakeOver = false;
+                    timeValue = monsterTakeOverTimeStart;
+                    timeUntilNextTakeOver = Random.Range(minTimeUntilTakeover, maxTimeUntilTakeover);
+                }
+            } else {
                 timer.monsterTakeover = false;
                 monsterTakeOver = false;
                 timeValue = monsterTakeOverTimeStart;
-                timeUntilNextTakeOver = Random.Range(minTimeUntilTakeover, maxTimeUntilTakeover);
             }
-        }
-        else {
-            timer.monsterTakeover = false;
-            monsterTakeOver = false;
-            timeValue = monsterTakeOverTimeStart;
         }
     }
 

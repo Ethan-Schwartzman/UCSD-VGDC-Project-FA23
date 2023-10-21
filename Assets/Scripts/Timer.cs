@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour {
     public bool monsterTakeover;
 
     private float monsterTimeValue;
+    private float shownTime;
 
     // Update is called once per frame
     void Update() {
@@ -27,13 +28,14 @@ public class Timer : MonoBehaviour {
 
         if (monsterTakeover) {
             monsterTimeValue = monsterTimerChange.getTimeValue();
-            DisplayTime(monsterTimeValue);
+            shownTime = monsterTimeValue;
             monsterTimerChange.setTimeValue(monsterTimeValue - Time.deltaTime);
         }
         else {
             //have the timeValue pass through the method to display time
-            DisplayTime(timeValue);
+            shownTime = timeValue;
         }
+        DisplayTime(shownTime);
     }
     //this method calculates the time and then display them
     public void DisplayTime(float timeToDisplay) {

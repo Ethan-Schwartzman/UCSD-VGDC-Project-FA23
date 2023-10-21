@@ -6,6 +6,21 @@ public class Channel : MonoBehaviour
 {
     public GameObject[] MonsterPositions;
     public GameObject[] WildlifePositions;
+    public GameObject MonsterSpots;
+    public GameObject WildlifeSpots;
+
+    public void GameBegin() {
+        MonsterPositions = new GameObject[MonsterSpots.transform.childCount];
+        for (int i = 0; i < MonsterSpots.transform.childCount; i++) {
+            MonsterPositions[i] = MonsterSpots.transform.GetChild(i).gameObject;
+        }
+        WildlifePositions = new GameObject[WildlifeSpots.transform.childCount];
+        for (int i = 0; i < WildlifeSpots.transform.childCount; i++) {
+            WildlifePositions[i] = WildlifeSpots.transform.GetChild(i).gameObject;
+        }
+        Debug.Log("monster pos length" + MonsterPositions.Length);
+        Debug.Log("Wildlife pos length" + WildlifePositions.Length);
+    }
 
     public GameObject GetRandomMonsterPosition() {
         if(MonsterPositions.Length == 0) Debug.Log("Monster positions have not yet been set up on this channel");

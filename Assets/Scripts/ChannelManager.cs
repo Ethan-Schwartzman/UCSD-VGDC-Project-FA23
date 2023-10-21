@@ -14,6 +14,7 @@ public class ChannelManager : MonoBehaviour
     private int axisReset;
     public BookMovement bookMovement;
     public MonsterAI monsterAI;
+    public WildlifeAI wildlifeAI;
     public SpriteRenderer UpArrow;
     public SpriteRenderer DownArrow;
 
@@ -53,12 +54,18 @@ public class ChannelManager : MonoBehaviour
             channels[i].SetParent(ActiveChannels.transform);
 
             // Ensure the channel has the channel component
-            if(channels[i].GetComponent<Channel>() == null) Debug.Log("An active channel is missing the channel component");
+            if (channels[i].GetComponent<Channel>() == null) Debug.Log("An active channel is missing the channel component");
+
+            channels[i].GetComponent<Channel>().GameBegin();
         }
 
         // Set the current channel
         channels[0].gameObject.SetActive(true);
         currentChannel = 0;
+
+        // Enable AI
+        monsterAI.GameBegin();
+        wildlifeAI.GameBegin();
     }
 
     public void Update(){
@@ -97,6 +104,7 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
+        wildlifeAI.ChannelChange();
 
         // Move the book
         bookMovement.StopAllCoroutines();
@@ -120,6 +128,7 @@ public class ChannelManager : MonoBehaviour
 
         // Tell MonsterAI that channel has changed
         monsterAI.ChannelChange();
+        wildlifeAI.ChannelChange();
 
         // Move the book
         bookMovement.StopAllCoroutines();

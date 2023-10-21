@@ -10,16 +10,18 @@ public class Channel : MonoBehaviour
     public GameObject WildlifeSpots;
 
     public void GameBegin() {
-        MonsterPositions = new GameObject[MonsterSpots.transform.childCount];
-        for (int i = 0; i < MonsterSpots.transform.childCount; i++) {
-            MonsterPositions[i] = MonsterSpots.transform.GetChild(i).gameObject;
+        //MonsterPositions = new GameObject[MonsterSpots.transform.childCount];
+        //for (int i = 0; i < MonsterSpots.transform.childCount; i++) {
+        //    MonsterPositions[i] = MonsterSpots.transform.GetChild(i).gameObject;
+       // }
+        if(WildlifeSpots != null) {
+            WildlifePositions = new GameObject[WildlifeSpots.transform.childCount];
+                for (int i = 0; i < WildlifeSpots.transform.childCount; i++) {
+                    WildlifePositions[i] = WildlifeSpots.transform.GetChild(i).gameObject;
+                }
         }
-        WildlifePositions = new GameObject[WildlifeSpots.transform.childCount];
-        for (int i = 0; i < WildlifeSpots.transform.childCount; i++) {
-            WildlifePositions[i] = WildlifeSpots.transform.GetChild(i).gameObject;
-        }
-        Debug.Log("monster pos length" + MonsterPositions.Length);
-        Debug.Log("Wildlife pos length" + WildlifePositions.Length);
+        //Debug.Log("monster pos length" + MonsterPositions.Length);
+        //Debug.Log("Wildlife pos length" + WildlifePositions.Length);
     }
 
     public GameObject GetRandomMonsterPosition() {

@@ -43,6 +43,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void ShowMainMenu() {
+        gameObject.SetActive(true);
         StartCoroutine(FadeToBlack(true)); // true means fade in
     }
 
@@ -84,7 +85,6 @@ public class MainMenuManager : MonoBehaviour
             TransitionScreen.color = new Color(0, 0, 0, opactiy);
             yield return null;
         }
-
         this.gameObject.SetActive(fadeDirection);
     }
 

@@ -13,5 +13,5 @@ public class MonsterType : ScriptableObject
     public bool LeavesBlood;
     public bool ChangesTimer;
 
-    public Sound[] MonsterNoises;
+    public AudioClip[] MonsterNoises;
 }

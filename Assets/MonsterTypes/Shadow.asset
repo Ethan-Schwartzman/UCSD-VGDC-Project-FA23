@@ -20,3 +20,5 @@ MonoBehaviour:
   CausesTVStatic: 0
   LeavesBlood: 1
   ChangesTimer: 1
+  MonsterNoises:
+  - {fileID: 8300000, guid: eb224c4fb06747a4f8d2c8591e86b11c, type: 3}

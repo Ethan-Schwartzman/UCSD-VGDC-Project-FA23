@@ -17,6 +17,7 @@ public class MonsterSelection : MonoBehaviour
     private Color selected = new Color(0f, 0f, 0f, 1f);
     private int currentOption;
     private int selectedOption;
+    private AudioSource[] allAudioSources;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +66,12 @@ public class MonsterSelection : MonoBehaviour
             Submit.GetComponent<TextMeshPro>().color = selected;
         }
     }
+    void StopAllAudio() {
+	    allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+	    foreach( AudioSource audioS in allAudioSources) {
+		audioS.Stop();
+	}
+}
 
     void Update() {
         if(Input.GetButtonDown("Submit")){
@@ -80,6 +87,7 @@ public class MonsterSelection : MonoBehaviour
                 }
                 else {
                     GameOverScript.Lose();
+                    StopAllAudio();
                 }
             }
         } 

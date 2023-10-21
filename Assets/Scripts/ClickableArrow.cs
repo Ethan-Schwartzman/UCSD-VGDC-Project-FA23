@@ -9,7 +9,6 @@ public class ClickableArrow : MonoBehaviour
     public ChannelManager cm;
     
     void OnMouseDown() {
-        
         if(UpArrow) cm.ChannelUp();
         else cm.ChannelDown();
     }

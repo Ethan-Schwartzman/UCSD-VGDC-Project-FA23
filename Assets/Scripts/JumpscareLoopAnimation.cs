@@ -7,6 +7,7 @@ public class JumpscareLoopAnimation : MonoBehaviour
 {
     public Sprite[] sprites;
     private SpriteRenderer sr;
+    public float FrameSpeedSeconds;
     private int spriteIndex;
 
     void OnEnable() {
@@ -20,7 +21,7 @@ public class JumpscareLoopAnimation : MonoBehaviour
         while(true) {
             sr.sprite = sprites[spriteIndex];
             if(spriteIndex++ >= sprites.Length-1) spriteIndex = 0;
-            yield return null;
+            yield return new WaitForSeconds(FrameSpeedSeconds);
         }
     }
 

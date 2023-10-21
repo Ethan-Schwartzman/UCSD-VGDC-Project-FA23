@@ -3069,7 +3069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomizeOrder: 1
-  NumberOfChannels: 6
+  NumberOfChannels: 5
   ActiveChannels: {fileID: 1603672203}
   InactiveChannels: {fileID: 2080322806}
   bookMovement: {fileID: 1902831845}

@@ -8,4 +8,10 @@ public class MonsterType : ScriptableObject
 {
     public String Name;
     public Sprite[] Sprites;
+
+    public bool CausesTVStatic;
+    public bool LeavesBlood;
+    public bool ChangesTimer;
+
+    public Sound[] MonsterNoises;
 }

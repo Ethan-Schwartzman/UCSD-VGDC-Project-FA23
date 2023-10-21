@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: shadow
   Sprites:
-  - {fileID: 21300000, guid: ed02d5c557a43764598736dacff9c83b, type: 3}
-  - {fileID: 21300000, guid: 58f42ff8843871f42a8ec3a99f40076f, type: 3}
-  - {fileID: 21300000, guid: 5313731eecec8844798fba8b206171ae, type: 3}
+  - {fileID: 21300000, guid: e95117bc476a7c844ad5cc1d572711cb, type: 3}
+  - {fileID: 21300000, guid: 44b1d1118d47e9d44b88b990dc94509b, type: 3}
+  - {fileID: 21300000, guid: 66e557d5da8b8d34d8b5b38623759590, type: 3}

@@ -3,34 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class Timer : MonoBehaviour
-{
+public class Timer : MonoBehaviour {
     //timer is set to 5 minutes in seconds
-    public float timeValue= 300;
+    public float timeValue = 300;
     //disply text
     public TextMeshPro timeText;
+    public MonsterTimerChange monsterTimerChange;
+    public bool monsterTakeover;
+
+    private float monsterTimeValue;
+
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         //if there are time left, start the timer
-        if(timeValue>0)
-        {
-          timeValue -= Time.deltaTime;
+        if (timeValue > 0) {
+            timeValue -= Time.deltaTime;
         }
         else
         //this prevents the timeValue to have the negative integers
         {
             timeValue = 0;
         }
-        //have the timeValue pass through the method to display time
-        DisplayTime(timeValue);
+
+        if (monsterTakeover) {
+            monsterTimeValue = monsterTimerChange.getTimeValue();
+            DisplayTime(monsterTimeValue);
+            monsterTimerChange.setTimeValue(monsterTimeValue - Time.deltaTime);
+        }
+        else {
+            //have the timeValue pass through the method to display time
+            DisplayTime(timeValue);
+        }
     }
     //this method calculates the time and then display them
-    void DisplayTime(float timeToDisplay)
-    {
+    public void DisplayTime(float timeToDisplay) {
         //prevents the timeDisplay to have a negative value
-        if(timeToDisplay < 0)
-        {
+        if (timeToDisplay < 0) {
             timeToDisplay = 0;
         }
         //calculate how many minutes left

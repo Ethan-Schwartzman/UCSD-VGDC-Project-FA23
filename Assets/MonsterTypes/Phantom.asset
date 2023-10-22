@@ -25,4 +25,5 @@ MonoBehaviour:
   ChangesTimer: 1
   MonsterNoises:
   - {fileID: 8300000, guid: eb224c4fb06747a4f8d2c8591e86b11c, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 9be26f6776f76ed47a44e0ca7575b2dc, type: 3}
+  - {fileID: 8300000, guid: c09f91ae99ddc1e43a1f71b0ee64fb5a, type: 3}

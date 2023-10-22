@@ -119,7 +119,7 @@ public class ChannelManager : MonoBehaviour
         UpArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
 
         //play sound
-        audioSource.Play();
+        //audioSource.Play();
     }
 
     public void ChannelDown() {
@@ -146,7 +146,7 @@ public class ChannelManager : MonoBehaviour
         DownArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
 
         //play sound
-        audioSource.Play();
+        //audioSource.Play();
     }
 
     public int GetCurrentChannel()

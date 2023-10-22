@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class MonsterAI : MonoBehaviour {
@@ -44,6 +45,8 @@ public class MonsterAI : MonoBehaviour {
             // If countdown runs out, appear
             if (timer > timeUntilAppear) {
                 currentPosition.SetActive(true);
+                AudioClip[] sounds = MonsterTypeManager.currentMonster.MonsterNoises;
+                AudioSource.PlayClipAtPoint(sounds[Random.Range(0, sounds.Length)], new Vector3(0, 0, 0));
                 Sprite[] monsterSprites = MonsterTypeManager.currentMonster.Sprites;
                 currentPosition.GetComponent<SpriteRenderer>().sprite = monsterSprites[Random.Range(0, monsterSprites.Length)];
                 // Choose next channel to appear on

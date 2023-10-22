@@ -5,42 +5,21 @@ using UnityEngine.UI;
 
 public class pressed_down : MonoBehaviour
 {
-    Image m_Image;
-    Image temp_img;
-    //Set this in the Inspector
-    public Sprite m_Sprite;
-    public Sprite temp_Sprite;
+    public AudioSource audioSource;
 
     void Start()
     {
-        //Fetch the Image from the GameObject
-        m_Image = GetComponent<Image>();
+      
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
 
-        //Press up to change the Sprite of the Image to pressed_down
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            m_Image.sprite = m_Sprite;
-
-            // Vector3 pos=transform.position;
-            // pos.y=0;
-            transform.localScale=new Vector3(0.5f,0.50f,1);
-            // transform.position=pos;
+            audioSource.Play();
         }
-        //after releasing the button, the image reverts back to before it was pressed
-        if(Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            m_Image.sprite = temp_Sprite;
-
-            // Vector3 pos=transform.position;
-            // pos.y=0;
-           
-            transform.localScale=new Vector3(0.5f,0.5f,1);
-            // transform.position=pos;
-        }
-        
     }
+    
 }

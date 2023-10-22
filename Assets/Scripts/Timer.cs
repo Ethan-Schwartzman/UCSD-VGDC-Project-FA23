@@ -43,6 +43,12 @@ public class Timer : MonoBehaviour {
         if (timeToDisplay < 0) {
             timeToDisplay = 0;
         }
+        if (timeToDisplay < 30) {
+            timeText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+        else {
+            timeText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
         //calculate how many minutes left
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         //calculate how many seconds left  

@@ -29,7 +29,7 @@ public class MonsterSelection : MonoBehaviour
         DeselectAllIcons();
     }
 
-    private void DeselectAllText() {
+    public void DeselectAllText() {
         for(int i = 0; i < Options.Length; i++) {
             Options[i].GetComponentInChildren<TextMeshPro>().color = notSelected;
         }
@@ -37,7 +37,7 @@ public class MonsterSelection : MonoBehaviour
         Submit.GetComponent<TextMeshPro>().color = notSelected;
     }
 
-    private void DeselectAllIcons() {
+    public void DeselectAllIcons() {
         for(int i = 0; i < Options.Length; i++) {
             SelectedIcons[i].SetActive(false);
         }

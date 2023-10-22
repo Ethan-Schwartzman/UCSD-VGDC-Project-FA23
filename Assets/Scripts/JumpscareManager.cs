@@ -25,7 +25,7 @@ public class JumpscareManager : MonoBehaviour
     }
 
     private IEnumerator WaitForJumpscareToFinish() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.6f);
         StopJumpscare();
         GameOverScreen.StartCoroutine(GameOverScreen.FadeOut(false));
         MMM.ShowMainMenuNoFade();

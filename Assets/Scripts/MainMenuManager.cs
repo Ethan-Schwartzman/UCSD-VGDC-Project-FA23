@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour {
     public float FadeSpeed;
     public SpriteRenderer TransitionScreen;
     public float timeLimit;
+    public MonsterSelection MonsterSelectionScript;
 
     public struct Difficulty {
         public float time;
@@ -39,6 +40,8 @@ public class MainMenuManager : MonoBehaviour {
     public void StartNewGame() {
         HideMainMenu();
         GameTimer.SetTimer(CurrentDifficulty.time);
+        MonsterSelectionScript.DeselectAllIcons();
+        MonsterSelectionScript.DeselectAllText();
     }
 
     public void ShowMainMenu() {

@@ -18,8 +18,6 @@ public class ChannelManager : MonoBehaviour
     public SpriteRenderer UpArrow;
     public SpriteRenderer DownArrow;
 
-    public AudioSource audioSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +66,6 @@ public class ChannelManager : MonoBehaviour
         // Enable AI
         monsterAI.GameBegin();
         //wildlifeAI.GameBegin();
-
-        //Fetch remote sound
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void Update(){
@@ -119,7 +114,7 @@ public class ChannelManager : MonoBehaviour
         UpArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
 
         //play sound
-        audioSource.Play();
+        // audioSource.Play();
     }
 
     public void ChannelDown() {
@@ -146,7 +141,7 @@ public class ChannelManager : MonoBehaviour
         DownArrow.color = new Color(0.6f, 0.6f, 0.6f, 1f);
 
         //play sound
-        audioSource.Play();
+        // audioSource.Play();
     }
 
     public int GetCurrentChannel()

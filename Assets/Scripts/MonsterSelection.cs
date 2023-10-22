@@ -84,6 +84,7 @@ public class MonsterSelection : MonoBehaviour
                 string monsterName = Options[selectedOption].GetComponentInChildren<TextMeshPro>().text.ToLower();
                 if(monsterName.Equals(MonsterTypeManager.currentMonster.name.ToLower())) {
                     GameOverScript.Win();
+                    StopAllAudio();
                 }
                 else {
                     GameOverScript.Lose();

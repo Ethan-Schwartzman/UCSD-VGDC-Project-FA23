@@ -1543,7 +1543,6 @@ GameObject:
   - component: {fileID: 283869730}
   - component: {fileID: 283869729}
   - component: {fileID: 283869731}
-  - component: {fileID: 283869732}
   m_Layer: 0
   m_Name: MonsterAI
   m_TagString: Untagged
@@ -1601,25 +1600,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 627355657}
   monsterTakeOver: 0
-  takeOverLimit: 5
-  maxTimeUntilTakeover: 8
-  minTimeUntilTakeover: 3
-  monsterTakeOverTimeStart: 8
-  monsterTakeOverTimeStop: 3
+  takeOverLimit: 3
+  maxTimeUntilTakeover: 80
+  minTimeUntilTakeover: 45
+  monsterTakeOverTimeStart: 30
+  monsterTakeOverTimeStop: 8
   monsterTypeManager: {fileID: 1882037796}
   takeOverCount: 0
---- !u!114 &283869732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283869728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65dc0d75949c441bea9bbb9cc48ea53c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &284926614
 GameObject:
   m_ObjectHideFlags: 0

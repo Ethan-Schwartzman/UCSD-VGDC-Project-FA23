@@ -169,6 +169,10 @@ public class PageTurner : MonoBehaviour
         selectingMonster = false;
     }
 
+    public float GetXOffset() {
+        return xOffset;
+    }
+
     void Update() {
         // axisReset is used to prevent spam turning the pages
         // by holding down a direction

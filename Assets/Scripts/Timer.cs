@@ -10,9 +10,13 @@ public class Timer : MonoBehaviour {
     public TextMeshPro timeText;
     public MonsterTimerChange monsterTimerChange;
     public bool monsterTakeover;
+    public GameOver gameOver;
 
     private float monsterTimeValue;
     private float shownTime;
+    private bool gameOvered;
+
+
 
     // Update is called once per frame
     void Update() {
@@ -23,6 +27,10 @@ public class Timer : MonoBehaviour {
         else
         //this prevents the timeValue to have the negative integers
         {
+            if (!gameOvered) {
+                gameOver.Lose();
+                gameOvered = true;
+            }
             timeValue = 0;
         }
 

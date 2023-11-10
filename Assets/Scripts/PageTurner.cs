@@ -10,19 +10,20 @@ public class PageTurner : MonoBehaviour
     public MonsterSelection MonsterSelectionScript;
     
     private float xOffset = 1.85f;
-    private float pageTurnTime = 0.015f; // smaller = slower
+    //private float pageTurnTime = 0.015f; // smaller = slower
+    private float pageTurnSeconds = 0.15f;
     private int currentPage;
     private bool bookInFocus;
     private int axisReset;
     private BookMovement bookMovement;
-    private bool pageDoneTurning;
+    //private bool pageDoneTurning;
     private bool selectingMonster;
 
     void Start() {
         currentPage = 0;
         bookMovement = transform.parent.GetComponent<BookMovement>();
         axisReset = 0;
-        pageDoneTurning = true;
+        //pageDoneTurning = true;
         int numPages = Pages.Length+1;
         MonsterSelectionScript = MonsterSelectionPage.GetComponent<MonsterSelection>(); 
         selectingMonster = false;
@@ -60,7 +61,7 @@ public class PageTurner : MonoBehaviour
         // Set odd numbered pages on the left
         // and even numbered pages on the right
         for(int i = 0; i < numPages; i++) {
-            bool selectionPage = i == numPages-1;
+            bool selectionPage = i == numPages-1; // TODO typo
 
             // Set page active
             Pages[i].SetActive(true);
@@ -98,6 +99,7 @@ public class PageTurner : MonoBehaviour
         // + 2 because there's a page on the left and right
         if(/*pageDoneTurning && */currentPage + 2 < Pages.Length) {
             StartCoroutine(TurnPageR2L());
+            //TurnPageR2L();
             currentPage += 2;
         }
         else {
@@ -110,6 +112,7 @@ public class PageTurner : MonoBehaviour
         // - 2 because there's a page on the left and right
         if(/*pageDoneTurning && */ !selectingMonster && currentPage - 2 >= 0) {
             StartCoroutine(TurnPageL2R());
+            //TurnPageL2R();
             currentPage -= 2;
         }
         else if(selectingMonster) {
@@ -118,51 +121,31 @@ public class PageTurner : MonoBehaviour
     }
 
     private IEnumerator TurnPageR2L() {
-        float s = 1f;
         GameObject p1 = Pages[currentPage];
         GameObject p2 = Pages[currentPage+1];
-        pageDoneTurning = false;
+        //pageDoneTurning = false;
         
         // Turn the right page halfway
-        while (s > 0) {
-            s -= pageTurnTime;
-            p1.transform.localScale = new Vector3(s, 1, 1);
-            yield return null;
-        }
-        p1.transform.localScale = new Vector3(0, 1, 1);
+        p1.transform.localScale = new Vector3(1, 1, 1);
+        yield return TransitionManager.ScaleLinear(p1.transform, true, 1f, 0f, pageTurnSeconds);
 
         // Finish turning the page (other side of the paper)
-        while (s < 1) {
-            s += pageTurnTime;
-            p2.transform.localScale = new Vector3(s, 1, 1);
-            yield return null;
-        }
-        p2.transform.localScale = new Vector3(1, 1, 1);
-        pageDoneTurning = true;
+        p2.transform.localScale = new Vector3(0, 1, 1);
+        yield return TransitionManager.ScaleLinear(p2.transform, true, 0f, 1f, pageTurnSeconds);
     }
 
     private IEnumerator TurnPageL2R() {
-        float s = 1f;
         GameObject p1 = Pages[currentPage-1];
         GameObject p2 = Pages[currentPage-2];
-        pageDoneTurning = false;
+        //pageDoneTurning = false;
         
-        // Turn the Left page halfway
-        while (s > 0) {
-            s -= pageTurnTime;
-            p1.transform.localScale = new Vector3(s, 1, 1);
-            yield return null;
-        }
-        p1.transform.localScale = new Vector3(0, 1, 1);
+        p1.transform.localScale = new Vector3(1, 1, 1);
+        yield return TransitionManager.ScaleLinear(p1.transform, true, 1f, 0f, pageTurnSeconds);
 
         // Finish turning the page (other side of the paper)
-        while (s < 1) {
-            s += pageTurnTime;
-            p2.transform.localScale = new Vector3(s, 1, 1);
-            yield return null;
-        }
-        p1.transform.localScale = new Vector3(0, 1, 1);
-        pageDoneTurning = true;
+        p2.transform.localScale = new Vector3(0, 1, 1);
+        yield return TransitionManager.ScaleLinear(p2.transform, true, 0f, 1f, pageTurnSeconds);
+        //pageDoneTurning = true;
     }
 
     public void SetNotSelectingMonster() {

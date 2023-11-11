@@ -28,6 +28,7 @@ public class JumpscareManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
         StopJumpscare();
         GameOverScreen.StartCoroutine(GameOverScreen.FadeOut(false));
+        Application.Quit();
         MMM.ShowMainMenuNoFade();
     }
 }

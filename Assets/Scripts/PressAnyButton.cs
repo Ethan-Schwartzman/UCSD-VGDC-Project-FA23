@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PressAnyButton : MonoBehaviour
 {
-    public float FlickerSpeed = 0.01f;
+    public float FlickerSpeed = 1f;
     private SpriteRenderer sr;
 
     // Update is called once per frame
@@ -15,24 +15,12 @@ public class PressAnyButton : MonoBehaviour
     }
 
     private IEnumerator FadeIn() {
-        float opactiy = 0f;
-        while (opactiy < 1f) {
-            opactiy += FlickerSpeed;
-            if(opactiy > 1f) opactiy = 1f;
-            sr.color = new Color(1, 1, 1, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(sr, 0f, 1f, FlickerSpeed);
         StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeOut() {
-        float opactiy = 1f;
-        while (opactiy > 0f) {
-            opactiy -= FlickerSpeed;
-            if(opactiy < 0f) opactiy = 0f;
-            sr.color = new Color(1, 1, 1, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(sr, 1f, 0f, FlickerSpeed);
         StartCoroutine(FadeIn());
     }
 }

@@ -23,8 +23,7 @@ public class MonsterSelection : MonoBehaviour
     void Start()
     {
         // Set all options to not selected
-        currentOption = -1;
-        selectedOption = -1;
+        ResetSelected();
         DeselectAllText();
         DeselectAllIcons();
     }
@@ -38,6 +37,8 @@ public class MonsterSelection : MonoBehaviour
     }
 
     public void DeselectAllIcons() {
+        //Debug.Log(Options.Length);
+        //Debug.Log(SelectedIcons.Length);
         for(int i = 0; i < Options.Length; i++) {
             SelectedIcons[i].SetActive(false);
         }
@@ -66,6 +67,12 @@ public class MonsterSelection : MonoBehaviour
             Submit.GetComponent<TextMeshPro>().color = selected;
         }
     }
+
+    public void ResetSelected() {
+        selectedOption = -1;
+        currentOption = -1;
+    }
+
     void StopAllAudio() {
 	    allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
 	    foreach( AudioSource audioS in allAudioSources) {

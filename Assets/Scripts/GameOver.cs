@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
     public TextMeshPro GameOverMessage;
     public MainMenuManager MMM;
     public JumpscareManager Jumpscare;
-    private float fadeSpeed = 0.001f;
+    private float fadeSpeed = 1f;
 
     public void Win() {
         gameObject.SetActive(true);
@@ -26,12 +26,7 @@ public class GameOver : MonoBehaviour
     private IEnumerator FadeIn(bool won) {
         float opactiy = 0f;
         GameOverMessage.color = new Color(0, 0, 0, opactiy);
-        while(opactiy < 1f) {
-            opactiy += fadeSpeed;
-            if(opactiy > 1f) opactiy = 1f; 
-            TransitionScreen.color = new Color(0, 0, 0, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(TransitionScreen, 0f, 1f, fadeSpeed);
         yield return new WaitForSeconds(1f);
         if(won) {
             StartCoroutine(FadeTextIn());
@@ -44,14 +39,13 @@ public class GameOver : MonoBehaviour
     // Fade in the gave over message
     private IEnumerator FadeTextIn() {
         float opactiy = 0f;
-        while(opactiy < 1f) {
-            opactiy += fadeSpeed;
-            if(opactiy > 1f) opactiy = 1f; 
-            GameOverMessage.color = new Color(1, 1, 1, opactiy);
-            yield return null;
-        }
+        GameOverMessage.color = new Color(1f, 1f, 1f, 0f);
+        yield return TransitionManager.Fade(GameOverMessage, 0, 1, fadeSpeed);
         yield return new WaitForSeconds(1f);
         StartCoroutine(FadeOut(true));
+
+
+        Application.Quit();
 
         // Return to the main menu
         MMM.ShowMainMenuNoFade();
@@ -60,25 +54,13 @@ public class GameOver : MonoBehaviour
     // Fade out the game over message, then right after,
     // fade out the black screen
     public IEnumerator FadeOut(bool fadeOutText) {
-        float opactiy = 1f;
         if(fadeOutText) {
-            while(opactiy > 0f) {
-                opactiy -= fadeSpeed;
-                if(opactiy < 0f) opactiy = 0f; 
-                GameOverMessage.color = new Color(1, 1, 1, opactiy);
-                yield return null;
-            }
+            yield return TransitionManager.Fade(GameOverMessage, 1, 0, fadeSpeed);
         }
         else {
             GameOverMessage.color = new Color(1, 1, 1, 0);
         }
 
-        opactiy = 1f;
-        while(opactiy > 0f) {
-            opactiy -= fadeSpeed;
-            if(opactiy < 0f) opactiy = 0f; 
-            TransitionScreen.color = new Color(0, 0, 0, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(TransitionScreen, 1, 0, fadeSpeed);
     }
 }

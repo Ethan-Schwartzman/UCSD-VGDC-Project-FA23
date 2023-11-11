@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
+using TMPro;
+//using TreeEditor;
 using UnityEngine;
 
 // For asynchronously smoothly interpolating between two values, (color, scale, position) 
@@ -10,10 +11,20 @@ public class TransitionManager
         float startTime = Time.time;
         while(Time.time - startTime < durationInSeconds) {
             float t = (Time.time - startTime) / durationInSeconds;
-            s.color = new Color(0, 0, 0, Mathf.SmoothStep(startValue, endValue, t));
+            s.color = new Color(s.color.r, s.color.g, s.color.b, Mathf.SmoothStep(startValue, endValue, t));
             yield return null;
         }
-        s.color = new Color(0, 0, 0, endValue);
+        s.color = new Color(s.color.r, s.color.g, s.color.b, endValue);
+    }
+
+    public static IEnumerator Fade(TextMeshPro tmp, float startValue, float endValue, float durationInSeconds) {
+        float startTime = Time.time;
+        while(Time.time - startTime < durationInSeconds) {
+            float t = (Time.time - startTime) / durationInSeconds;
+            tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, Mathf.SmoothStep(startValue, endValue, t));
+            yield return null;
+        }
+        tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, endValue);
     }
 
     public static IEnumerator Scale(Transform transform, bool xTrueYFalse, float startValue, float endValue, float durationInSeconds) {

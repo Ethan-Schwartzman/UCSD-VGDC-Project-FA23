@@ -58,6 +58,10 @@ public class PageTurner : MonoBehaviour
             Pages = temp;
         }
 
+        SetupPages(numPages);
+    }
+
+    public void SetupPages(int numPages) {
         // Set odd numbered pages on the left
         // and even numbered pages on the right
         for(int i = 0; i < numPages; i++) {

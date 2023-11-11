@@ -7,19 +7,24 @@ public class MainMenuManager : MonoBehaviour {
     public bool EnableMainMenu;
     public GameObject Game;
     public Timer GameTimer;
-    [Range(0.001f, 0.01f)]
+    //[Range(0.001f, 0.01f)]
     public float FadeSpeed;
     public SpriteRenderer TransitionScreen;
     public float timeLimit;
     public MonsterSelection MonsterSelectionScript;
+    public GameObject Credits;
 
     public struct Difficulty {
         public float time;
     }
     Difficulty CurrentDifficulty;
+    private bool inCredits = false;
+    private bool transitioning;
 
     // Start is called before the first frame update
     void Start() {
+        transitioning = false;
+        inCredits = false;
         SetDifficulty(timeLimit);
         if (EnableMainMenu) {
             foreach (Transform child in transform) {
@@ -35,18 +40,28 @@ public class MainMenuManager : MonoBehaviour {
             Game.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
+        Credits.SetActive(false);
     }
 
     public void StartNewGame() {
         HideMainMenu();
         GameTimer.SetTimer(CurrentDifficulty.time);
+        MonsterSelectionScript.ResetSelected();
         MonsterSelectionScript.DeselectAllIcons();
         MonsterSelectionScript.DeselectAllText();
     }
 
     public void ShowMainMenu() {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         StartCoroutine(FadeToBlack(true)); // true means fade in
+        
+        inCredits = false;
+        foreach (Transform child in transform) {
+            child.gameObject.SetActive(true);
+        }
+        Game.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
+        Credits.SetActive(false);
     }
 
     public void HideMainMenu() {
@@ -57,23 +72,47 @@ public class MainMenuManager : MonoBehaviour {
         CurrentDifficulty.time = time;
     }
 
+    public IEnumerator ShowCredits() {
+        transitioning = true;
+        inCredits = true;
+        yield return TransitionManager.Fade(TransitionScreen, 0f, 1f, FadeSpeed);
+        Credits.SetActive(true);
+        yield return TransitionManager.Fade(TransitionScreen, 1f, 0f, FadeSpeed);
+        transitioning = false;
+    }
+
+    public IEnumerator HideCredits() {
+        transitioning = true;
+        inCredits = false;
+        yield return TransitionManager.Fade(TransitionScreen, 0f, 1f, FadeSpeed);
+        Credits.SetActive(false);
+        yield return TransitionManager.Fade(TransitionScreen, 1f, 0f, FadeSpeed);
+        transitioning = false;
+    }
+
     void Update() {
         if (Input.GetKeyDown("escape")) {
             Application.Quit();
         }
         if (Input.anyKeyDown) {
-            HideMainMenu();
+            StartCoroutine(TryHideMainMenu());
+        }
+    }
+
+    private IEnumerator TryHideMainMenu() {
+        yield return new WaitForSeconds(0.1f);
+        if(!transitioning) {
+            if(!inCredits) {
+                HideMainMenu();
+            }
+            else {
+                StartCoroutine(HideCredits());
+            }
         }
     }
 
     private IEnumerator FadeToBlack(bool fadeDirection) {
-        float opactiy = 0f;
-        while (opactiy < 1f) {
-            opactiy += FadeSpeed;
-            if (opactiy > 1f) opactiy = 1f;
-            TransitionScreen.color = new Color(0, 0, 0, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(TransitionScreen, 0f, 1f, FadeSpeed);
 
         foreach (Transform child in transform) {
             child.gameObject.SetActive(fadeDirection);
@@ -81,20 +120,18 @@ public class MainMenuManager : MonoBehaviour {
 
         Game.gameObject.SetActive(!fadeDirection);
 
-        while (opactiy > 0f) {
-            opactiy -= FadeSpeed;
-            if (opactiy < 0f) opactiy = 0f;
-            TransitionScreen.color = new Color(0, 0, 0, opactiy);
-            yield return null;
-        }
+        yield return TransitionManager.Fade(TransitionScreen, 1f, 0f, FadeSpeed);
         this.gameObject.SetActive(fadeDirection);
     }
 
     public void ShowMainMenuNoFade() {
+        inCredits = false;
         foreach (Transform child in transform) {
             child.gameObject.SetActive(true);
         }
         Game.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
+        Credits.SetActive(false);
+
     }
 }

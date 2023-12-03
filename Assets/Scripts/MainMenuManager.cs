@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour {
     public float timeLimit;
     public MonsterSelection MonsterSelectionScript;
     public GameObject Credits;
+    public AudioSource m_MyAudioSource;
 
     public AudioSource m_MyAudioSource;
 

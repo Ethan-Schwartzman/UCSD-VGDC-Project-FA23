@@ -21,6 +21,8 @@ public class MainMenuManager : MonoBehaviour {
     private bool inCredits = false;
     private bool transitioning;
 
+    public AudioSource m_MyAudioSource;
+
     // Start is called before the first frame update
     void Start() {
         transitioning = false;
@@ -41,6 +43,7 @@ public class MainMenuManager : MonoBehaviour {
             this.gameObject.SetActive(false);
         }
         Credits.SetActive(false);
+        m_MyAudioSource = GetComponent<AudioSource>();
     }
 
     public void StartNewGame() {
@@ -66,6 +69,9 @@ public class MainMenuManager : MonoBehaviour {
 
     public void HideMainMenu() {
         StartCoroutine(FadeToBlack(false)); // false means fade out
+        if(Input.anyKey){
+            m_MyAudioSource.Stop();
+        }
     }
 
     public void SetDifficulty(float time) {

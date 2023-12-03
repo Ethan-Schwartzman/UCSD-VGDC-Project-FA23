@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PixelArtMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 94c1a19d90d5e9e498c0abaffb73691e, type: 3}
-  m_Parent: {fileID: 2100000, guid: 562bcda42a2dae0499bc9a2c58aa0562, type: 2}
+  m_Shader: {fileID: -6465566751694194690, guid: 9ae65cbfec89f92449fc5c56f6384185, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 9ae65cbfec89f92449fc5c56f6384185, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,20 +24,20 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: 56d6f9d2330821c4bb9c78bfd060cc7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BlinkFrequency: 2.96
     - _BlinkIntensity: 0.06
-    - _Blockiness: 128
+    - _Blockiness: 80
     - _Curvature: 3
-    - _Fuzziness: 1.15
+    - _Fuzziness: 1.2
     - _Grayscale: 0
     - _NoiseAmount: 0
     - _PixelResolution: 64
-    - _Range: 0.574
+    - _Range: 0.5
     - _ScanLineSpeed: 0.64
     - _ScanningLines: 12.3
     - _ShaderIntensity: 0.486
